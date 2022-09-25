@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +28,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::get('/{ten}/{tuoi?}', [WelcomeController::class, 'welcome']);
-Route::get('/',[WelcomeController::class,'form']);
-Route::post('/post',[WelcomeController::class,'post']);
+// Route::get('/',[Controller::class,'Controller']);
+// Route::get('/',[WelcomeController::class,'index']);
+// // Route::get('/',[WelcomeController::class,'form']);
+// Route::post('/post',[WelcomeController::class,'post']);
+// Route::get('/list',[WelcomeController::class,'action']);
+
+Route::get('/',[StudentController::class,'index']);
+
+Route::get('/create',[StudentController::class,'create'])->name('create');
+//->name('create') ở đây nghĩa là đặt  cho cái route này 1 cái tên  là 'create'
+// để mà sau này mình chỉ cần đổi giá trị của route đấy thì tất cả chỗ khác sẽ nhận 
+
+Route::post('/create',[StudentController::class,'store'])->name('store');
+//k cần phải đổi uri '/create' thành '/post' vì mình xài method post là nó đã hiểu là tạo 1 cái gì đó r 
